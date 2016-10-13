@@ -3,9 +3,8 @@
 # C extensions
 *.so
 
-# pycharm
-.idea/
-.idea
+# Vim swap files
+*.swp
 
 # Packages
 *.egg
@@ -26,15 +25,13 @@ pip-log.txt
 
 # Unit test / coverage reports
 .coverage
-.tox
-nosetests.xml
 
 # Complexity
 output/*.html
 output/*/index.html
 
-# Sphinx
-docs/_build
-
 # Cookiecutter
 output/
+
+# Virtual envs
+venv/
