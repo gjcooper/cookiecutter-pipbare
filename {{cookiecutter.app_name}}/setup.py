@@ -1,14 +1,26 @@
 from setuptools import setup, find_packages
 from codecs import open
 from os import path
+import subprocess
+import sys
 
 __version__ = '{{cookiecutter.version}}'
 
 here = path.abspath(path.dirname(__file__))
 
-# Get the long description from the README file
-with open(path.join(here, 'README.md'), encoding='utf-8') as f:
-    long_description = f.read()
+pandoc_call = ['pandoc', '--from=markdown', '--to=rst', 'README.md']
+
+try:
+    output = subprocess.run(pandoc_call, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    if output.returncode:
+        print(output.stderr)
+        sys.exit()
+    output = output.stdout
+except AttributeError:
+    try:
+        output = subprocess.check_output(pandoc_call)
+    except subprocess.CalledProcessError:
+        sys.exit()
 
 # get the dependencies and installs
 with open(path.join(here, 'requirements.txt'), encoding='utf-8') as f:
@@ -21,7 +33,7 @@ setup(
     name='{{cookiecutter.app_name}}',
     version=__version__,
     description='{{cookiecutter.project_short_description}}',
-    long_description=long_description,
+    long_description=output,
     url='https://github.com/{{cookiecutter.github_username}}/{{cookiecutter.app_name}}',
     download_url='https://github.com/{{cookiecutter.github_username}}/{{cookiecutter.app_name}}/tarball/' + __version__,
     license='GPLv3',
