@@ -27,7 +27,7 @@ def genRST():
             output = subprocess.check_output(pandoc_call)
         except subprocess.CalledProcessError:
             sys.exit()
-    return output
+    return output.decode()
 
 # get the dependencies and installs
 with codecs.open(os.path.join(base_dir, 'requirements.txt'), encoding='utf-8') as f:
