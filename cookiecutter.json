@@ -2,7 +2,7 @@
 	"full_name": "Gavin Cooper",
 	"email": "",
 	"github_username": "gjcooper",
-	"project_name": "A very bare bones pip installable package",
+	"project_title": "Bare Bones Pip Installable Package",
 	"app_name": "apippkg",
 	"project_short_description": "A python package that can be installed with pip.",
 	"version": "0.0.1",
